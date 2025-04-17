@@ -206,7 +206,7 @@ class LUNACert{
 		$bin .= "\x51"; // Extensions Key Identifier
 		$bin .= "\x5a" . hash('sha256', $parse_key, true); // Subject Key Identifier
 		$bin .= "\x5b"; // Authority Key Identifier
-		$bin .= ($CA == null) ? hash('sha256', $parse_key, true) : hash('sha256', $parse_cert['publickey'], true);
+		$bin .= ($CA == null) ? hash('sha256', $parse_key, true) : hash('sha256', hex2bin($parse_cert['publickey']), true);
 	
 		// Add Subject Alternative Name
 		if (isset($SAN)) {
